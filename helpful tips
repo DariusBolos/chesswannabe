@@ -1,0 +1,6 @@
+z-index: moves a child element further in hierarchy
+change player function
+reverse indexes of all squares when changing the turn
+make sure the correct go is satisfied
+opponent go, taken by opponent
+start position, drop position, piece type
