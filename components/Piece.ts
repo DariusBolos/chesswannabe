@@ -6,4 +6,9 @@ export class Piece {
     move(startPosition: number, dropPosition: number){
         // default move function changed for every piece
     }
+
+    capture(dropSquare: HTMLElement){
+        // function that removes the child element of a square if the piece gets captured 
+        dropSquare.removeChild(dropSquare.firstChild)
+    }
 }

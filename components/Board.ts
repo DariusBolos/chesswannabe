@@ -46,11 +46,18 @@ export class Board {
     }
 
     dragDrop(e: Event, draggedPiece: any, player: string){
-        const target = e.target as HTMLElement
-        if(!target.hasChildNodes() && target.tagName == 'DIV' && draggedPiece != undefined){
+        let target = e.target as HTMLElement
+        if(!target.className.includes('square'))
+                target = target.parentElement
+
+        if(target.hasChildNodes())
+            target.removeChild(target.firstChild)
+
+        if(target.tagName == 'DIV' && draggedPiece != undefined){
             player = this.game.changePlayer(player)            
             target.append(draggedPiece)
         }
+
         return player
     }
 

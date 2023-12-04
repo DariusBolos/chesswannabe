@@ -42,7 +42,12 @@ startButton.addEventListener('click', () => {
     squareList.forEach(square => {
         square.addEventListener('dragover', (e: Event) => board.dragOver(e))
         square.addEventListener('drop', (e: Event) => {
-            const dropTarget = e.target as HTMLElement
+            let dropTarget = e.target as HTMLElement            
+
+            if(!dropTarget.className.includes("square")){
+                dropTarget = dropTarget.parentElement
+            }
+
             const dropSquareId = Number(dropTarget.getAttribute('square-id'))
             const pieceObj = game.createPiece(pieceName)
             if(pieceObj.move(startPosition, dropSquareId))
