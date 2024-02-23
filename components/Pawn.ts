@@ -1,14 +1,23 @@
 import {Piece} from "./Piece";
 
 export class Pawn extends Piece{
+    checkEnPassant(dropPosition: number, capturePositions: Array<Number>) {
+        if(capturePositions.includes(dropPosition && dropPosition - this.board.width)){
+            const toCaptureSquare = document.querySelector(`div[square-id="${dropPosition}"]`);
+            if(toCaptureSquare.hasChildNodes())
+                return true
+        }
+    }
     move(startPosition: number, dropPosition: number){
         const dropTarget = document.querySelector(`div[square-id="${dropPosition}"]`)
         const startPositions = [8, 9, 10, 11, 12, 13, 14, 15] as Array<Number>
         if(startPositions.includes(startPosition) && !dropTarget.hasChildNodes()){
             const dropSquare = document.querySelector(`div[square-id="${dropPosition - this.board.width}"]`)
             if(dropPosition === startPosition + (2 * this.board.width) && !dropSquare.hasChildNodes())
-                return true
+                return true;
         }
+
+
 
         if(dropTarget.hasChildNodes()){
             const capturePositions = []
@@ -22,5 +31,12 @@ export class Pawn extends Piece{
             return dropPosition === startPosition + this.board.width
 
         return false
+    }
+
+    capture(dropSquare: HTMLElement, dropPosition: number) {
+        if(this.checkEnPassant()){
+            const toCaptureSquare =  document.querySelector(`div[square-id="${dropPosition - this.board.width}"]`)
+        }
+
     }
 }

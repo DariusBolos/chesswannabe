@@ -16,8 +16,11 @@ export class Game {
     }
 
     changePlayer(currentPlayer: string){
-        currentPlayer === 'white'? currentPlayer = 'black' : currentPlayer = 'white'
-        return currentPlayer
+        const playerColor = {
+            'white': 'black',
+            'black': 'white'
+        };
+        return playerColor[currentPlayer]
     }
 
     createPiece(pieceType: string){
